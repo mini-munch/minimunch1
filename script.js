@@ -161,31 +161,16 @@ function submitOrder(event) {
     let grandTotal = document.getElementById('cart-grand-total').innerText;
     let deliveryStatus = document.getElementById('cart-delivery').innerText;
     
-    // Append delivery info to the final order string for the owner
+    // Append delivery info to the final order string
     orderDetails += `\n[Delivery: ${deliveryStatus}]`;
 
     // Show loading UI
     document.getElementById('submit-btn').style.display = 'none';
     document.getElementById('loading-msg').classList.remove('hidden');
 
-    // !!! We will paste the Google Script URL here later !!!
-    const scriptURL = 'YOUR_FUTURE_GOOGLE_SCRIPT_URL_HERE'; 
+    // !!! PASTE YOUR GOOGLE SCRIPT URL RIGHT HERE BELOW !!!
+    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
 
-    // For testing locally right now, we will simulate a successful order
-    setTimeout(() => {
-        document.getElementById('cart-modal').classList.add('hidden');
-        document.getElementById('success-modal').classList.remove('hidden');
-        
-        // Reset everything
-        cart = [];
-        updateCartUI();
-        document.getElementById('checkout-form').reset();
-        document.getElementById('submit-btn').style.display = 'block';
-        document.getElementById('loading-msg').classList.add('hidden');
-    }, 1500); 
-    
-    /* 
-    WE WILL UNCOMMENT THIS LATER WHEN YOU ARE READY FOR GOOGLE SHEETS
     const formData = new FormData();
     formData.append('name', name);
     formData.append('phone', phone);
@@ -193,10 +178,23 @@ function submitOrder(event) {
     formData.append('order', orderDetails);
     formData.append('total', grandTotal);
 
+    // Send data to Google Sheets
     fetch(scriptURL, { method: 'POST', body: formData })
-        .then(...)
-    */
+        .then(response => {
+            // Show Success Modal
+            document.getElementById('cart-modal').classList.add('hidden');
+            document.getElementById('success-modal').classList.remove('hidden');
+            
+            // Reset everything for the next order
+            cart = [];
+            updateCartUI();
+            document.getElementById('checkout-form').reset();
+            document.getElementById('submit-btn').style.display = 'block';
+            document.getElementById('loading-msg').classList.add('hidden');
+        })
+        .catch(error => {
+            alert('Something went wrong. Please try again or contact us on WhatsApp.');
+            document.getElementById('submit-btn').style.display = 'block';
+            document.getElementById('loading-msg').classList.add('hidden');
+        });
 }
-
-// Initialize empty UI
-updateCartUI();
