@@ -169,7 +169,7 @@ function submitOrder(event) {
     document.getElementById('loading-msg').classList.remove('hidden');
 
     // !!! PASTE YOUR GOOGLE SCRIPT URL RIGHT HERE BELOW !!!
-    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw-Q6dFiM6UpP12tHZs18_Ceu-uLI9f90Im_5ABWc2IZDWK_bJiPvpPOmM3iQVhfwSbrg/exec'; 
 
     const formData = new FormData();
     formData.append('name', name);
