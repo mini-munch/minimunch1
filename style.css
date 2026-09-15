@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap');
+
+/* Mobile-first base styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fdf5e6; /* Warm bakery background */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Header & Welcome Section */
+.store-header {
+    text-align: center;
+    padding: 20px 15px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: -10px;
+}
+
+h1 { font-size: 2.2rem; margin: 5px 0; letter-spacing: -1px; }
+.orange-text { color: #ff5722; }
+h2 { font-size: 1.1rem; font-weight: 500; margin-top: 0; color: #555; }
+
+.welcome-card {
+    background: #fff4f1;
+    border: 1px solid #ffe0d8;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px auto 0;
+    max-width: 500px;
+    text-align: center;
+}
+.welcome-card h3 { color: #e64a19; margin-top: 0; font-size: 1.2rem; }
+.welcome-card p { font-size: 0.9rem; line-height: 1.5; margin: 8px 0; color: #444; }
+.highlight-text { color: #d84315; font-size: 1.1rem !important; }
+
+/* Product Grid */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 15px 100px; /* Extra bottom padding for mobile cart button */
+}
+
+.menu-title {
+    text-align: center;
+    color: #ff5722;
+    font-size: 1.8rem;
+    margin: 10px 0 20px;
+}
+
+.products-grid {
+    display: grid;
+    /* This makes it perfectly responsive: 2 columns on phone, 3+ on PC */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+@media (min-width: 768px) {
+    .products-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    text-align: center;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.add-to-cart {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 10px 0;
+    transition: 0.2s;
+    /* Prevent zooming on mobile tap */
+    touch-action: manipulation; 
+}
+.add-to-cart:active { transform: scale(0.95); }
+
+/* Floating Cart Button */
+.floating-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #2e7d32; /* Green for action */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(46, 125, 50, 0.4);
+    z-index: 100;
+    touch-action: manipulation;
+}
+#cart-count {
+    background: white;
+    color: #2e7d32;
+    padding: 2px 8px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+/* Modals */
+.hidden { display: none !important; }
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); z-index: 1000;
+    display: flex; align-items: flex-end; /* Opens from bottom on mobile */
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .modal { align-items: center; } /* Centers on PC */
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    position: relative;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease-out;
+}
+@media (min-width: 768px) {
+    .modal-content { border-radius: 15px; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.close-btn {
+    position: absolute; top: 15px; right: 20px;
+    font-size: 1.8rem; cursor: pointer; color: #555;
+}
+
+/* Promo Banner inside Cart */
+.delivery-promo {
+    background: #fff3cd;
+    color: #856404;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    border: 1px solid #ffeeba;
+}
+
+/* Cart Items */
+.cart-item {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #eee; padding: 12px 0;
+}
+.cart-item-info h4 { margin: 0; color: #333; font-size: 0.95rem; }
+.cart-item-info p { margin: 5px 0 0; color: #ff5722; font-size: 0.9rem; font-weight: bold; }
+.cart-qty-controls { display: flex; align-items: center; gap: 10px; }
+.cart-qty-controls button {
+    background: #f5f5f5; border: 1px solid #ddd; width: 30px; height: 30px; 
+    border-radius: 5px; font-weight: bold; font-size: 1.2rem; cursor: pointer;
+    touch-action: manipulation;
+}
+
+/* Summary & Checkout */
+.cart-summary {
+    background: #f9f9f9; padding: 15px; border-radius: 10px; margin: 15px 0;
+}
+.summary-line {
+    display: flex; justify-content: space-between; margin-bottom: 8px; color: #555; font-size: 0.95rem;
+}
+.grand-total {
+    font-weight: 900; color: #ff5722; font-size: 1.3rem; margin-top: 10px; border-top: 2px dashed #ddd; padding-top: 10px;
+}
+
+input, textarea {
+    width: 100%; padding: 15px; margin-bottom: 12px; border: 1px solid #ccc;
+    border-radius: 8px; font-family: inherit; font-size: 1rem; box-sizing: border-box;
+}
+.checkout-btn {
+    width: 100%; background: #ff5722; color: white; border: none;
+    padding: 15px; font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer;
+    margin-top: 5px;
+}
+.checkout-btn:active { background: #e64a19; }
+
+.loading-text { color: #ff5722; text-align: center; font-weight: bold; }
+
+/* Success Modal specific styles */
+.text-center { text-align: center; }
+.success-icon { color: #2e7d32; font-size: 4rem; margin: 0; }
+.success-title { color: #ff5722; margin: 10px 0; }
+.success-msg { font-size: 1.05rem; line-height: 1.5; margin: 15px 0 25px; color: #444; }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mini Munch - Fresh Bakery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Professional Store Header -->
+    <header class="store-header">
+        <img src="logo.png" alt="mini munch logo" class="logo" onerror="this.src='https://via.placeholder.com/150/ffffff/000000?text=Logo'">
+        <h1><span>mini</span><span class="orange-text">munch</span></h1>
+        <h2>munch anytime</h2>
+        
+        <div class="welcome-card">
+            <h3>Welcome to our Fresh Bakery! 🍞</h3>
+            <p>We believe in pure, homemade goodness. We never sell old stock.</p>
+            <p class="highlight-text"><strong>Order Today. We Bake Tomorrow.</strong></p>
+            <p>Made with premium ingredients and zero preservatives. Place your order below!</p>
+        </div>
+    </header>
+
+    <!-- Product Grid -->
+    <main>
+        <h2 class="menu-title">Our Menu</h2>
+        <div class="products-grid" id="products-grid">
+            <!-- Products injected via JS -->
+        </div>
+    </main>
+
+    <!-- Floating Cart Button -->
+    <div class="floating-cart" onclick="toggleCart()">
+        🛒 Cart <span id="cart-count">0</span>
+    </div>
+
+    <!-- Cart & Checkout Modal -->
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleCart()">&times;</span>
+            <h2>Your Order</h2>
+            
+            <!-- Delivery Promo Message -->
+            <div id="delivery-promo" class="delivery-promo">
+                <!-- Promo message injected via JS -->
+            </div>
+            
+            <div id="cart-items">
+                <!-- Cart items appear here -->
+            </div>
+            
+            <!-- Price Summary -->
+            <div class="cart-summary" id="cart-summary" style="display: none;">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">Rs 0</span>
+                </div>
+                <div class="summary-line">
+                    <span>Delivery Fee:</span>
+                    <span id="cart-delivery">Rs 200</span>
+                </div>
+                <div class="summary-line grand-total">
+                    <span>Total:</span>
+                    <span id="cart-grand-total">Rs 0</span>
+                </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <form id="checkout-form" class="hidden" onsubmit="submitOrder(event)">
+                <h3>Delivery Details</h3>
+                <input type="text" id="cust-name" placeholder="Full Name" required>
+                <input type="tel" id="cust-phone" placeholder="Phone (e.g. 03XXXXXXXXX)" required pattern="^03\d{9}$">
+                <textarea id="cust-address" placeholder="Complete Delivery Address" required rows="3"></textarea>
+                <button type="submit" class="checkout-btn" id="submit-btn">Place Order</button>
+                <p id="loading-msg" class="hidden loading-text">Sending order...</p>
+            </form>
+            
+            <button id="show-checkout-btn" class="checkout-btn" onclick="showCheckoutForm()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content text-center">
+            <h1 class="success-icon">🎉</h1>
+            <h2 class="success-title">Order Placed Successfully!</h2>
+            <p class="success-msg">
+                Thank you for choosing Mini Munch!<br>
+                Your freshly baked order has been received.<br>
+                <strong>Our representative will contact you soon for confirmation. ❤️</strong>
+            </p>
+            <button class="checkout-btn" onclick="closeSuccess()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
