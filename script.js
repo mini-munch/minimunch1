@@ -198,3 +198,6 @@ function submitOrder(event) {
             document.getElementById('loading-msg').classList.add('hidden');
         });
 }
+
+// Initialize empty UI
+updateCartUI();
