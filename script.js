@@ -1,4 +1,4 @@
-// Products ordered exactly as requested
+// 1. Products ordered exactly as requested
 const products = [
     { id: 1, name: "Cake Rusk", weight: "500 g", price: 800, img: "4-cr.png" },
     { id: 2, name: "Nan Khatai", weight: "500 g", price: 800, img: "5-nan.png" },
@@ -13,7 +13,7 @@ let cart = [];
 const FREE_DELIVERY_THRESHOLD = 2000;
 const DELIVERY_CHARGE = 200;
 
-// 1. Render Products to the Page
+// 2. Render Products to the Page
 const productsGrid = document.getElementById('products-grid');
 products.forEach(product => {
     const card = document.createElement('div');
@@ -25,7 +25,7 @@ products.forEach(product => {
     productsGrid.appendChild(card);
 });
 
-// 2. Cart Functions
+// 3. Cart Functions
 function addToCart(productId, btnElement) {
     const product = products.find(p => p.id === productId);
     const existingItem = cart.find(item => item.id === productId);
@@ -127,7 +127,7 @@ function updateCartUI() {
     }
 }
 
-// 3. Modal Controls
+// 4. Modal Controls
 function toggleCart() {
     document.getElementById('cart-modal').classList.toggle('hidden');
     document.getElementById('checkout-form').classList.add('hidden');
@@ -147,7 +147,7 @@ function closeSuccess() {
     document.getElementById('success-modal').classList.add('hidden');
 }
 
-// 4. Submit Order
+// 5. Submit Order (Linked to Google Sheets)
 function submitOrder(event) {
     event.preventDefault();
     if (cart.length === 0) return alert("Your cart is empty!");
@@ -199,5 +199,5 @@ function submitOrder(event) {
         });
 }
 
-// Initialize empty UI
+// 6. Initialize empty UI when page loads
 updateCartUI();
